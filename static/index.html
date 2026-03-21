@@ -17,6 +17,12 @@
         //const valueUpdater = new ValueUpdater(1000, 100); // Update every second, starting at 100
     </script>
     <script>
+        fetch('questions.json')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Questions loaded:', data);
+                window.questions = data;
+                });
         if (localStorage.getItem('user_uuid')) {
             console.log('UUID already exists in LocalStorage:', localStorage.getItem('user_uuid'));
         } else {
