@@ -1,5 +1,5 @@
 // 1. Initialize data buffers (X = time, Y = value)
-const now = Date.now() / 1000; // uPlot expects seconds, not ms
+var now = Date.now() / 1000; // uPlot expects seconds, not ms
 let xData = []; // Start with a single timestamp (e.g., now)
 let yData = []; // Start with some initial values, currently set to 10 as that's approixmately how valuable you are if we disassembled your atoms.
 let data = [xData, yData];
@@ -18,18 +18,42 @@ const opts = {
       width: 2,
     }
   ],
+  axes: [
+        {
+            // X-Axis (Timeline)
+            stroke: "#FFB300",    // Amber text for labels
+            grid: {
+                stroke: "#222222", // Subtle dark grey grid lines
+                width: 1,
+            },
+            ticks: {
+                stroke: "#333333", // Slightly brighter ticks
+            }
+        },
+        {
+            // Y-Axis (Price/Data)
+            stroke: "#FFB300",    // Amber text
+            grid: {
+                stroke: "#222222", // Grid lines
+                width: 1,
+            },
+            ticks: {
+                stroke: "#333333",
+            }
+        }
+    ],
   scales: {
     x: { time: true } // Tells uPlot to format X as dates
   }
 };
 
 // 3. Create the instance
-let u = new uPlot(opts, data, document.body);
+let u = new uPlot(opts, data, document.getElementById('lifeChart'));
 
 // 4. The update function
-function addDataPoint(value) {
-  const now = Date.now() / 1000; // uPlot expects seconds, not ms
-  
+function addDataPoint(value, interval) {
+  now += interval;
+
   xData.push(now);
   yData.push(value);
 
@@ -74,7 +98,7 @@ class ValueUpdater {
       const fluctuation = (Math.random() - 0.5) * 2; // Random value between -1 and 1
       const newValue = this.currentValue + ((this.target - this.currentValue) * this.precision) + fluctuation;
       this.currentValue = newValue;
-      addDataPoint(newValue);
+      addDataPoint(newValue, this.updateInterval / 1000); // Convert ms to seconds for the chart
       await new Promise(resolve => setTimeout(resolve, this.updateInterval));
     }
     }

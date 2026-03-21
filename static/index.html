@@ -13,10 +13,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Inter:wght@400;500&display=swap"
         rel="stylesheet">
-    <script src="game.js">
-        const valueUpdater = new ValueUpdater(1000, 100); // Update every second, starting at 100
-    </script>
+    <script src="game.js"></script>    
     <script>
+        window.onload = function() {
+            window.playerPoints = 100;
+            window.valueUpdater = new ValueUpdater(150, 50);
+        };
         if (localStorage.getItem('user_uuid')) {
             console.log('UUID already exists in LocalStorage:', localStorage.getItem('user_uuid'));
         } else {
@@ -42,25 +44,15 @@
     
 </head>
 
-<body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+<body>
+    <nav class="navbar navbar-expand-lg shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">LifeBetting</a>
             <button class="navbar-toggler" id="start-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <section class="py-5 bg-white border-top border-bottom animate__animated animate__fadeIn animate__delay-1s">
-                <div class="container">
-                    <div class="row text-center g-4" id="game-container">
-                        <button class="btn btn-primary btn-lg" id="start-btn" onclick="initializeGame()">Start Game</button>
-                        <canvas id="game-canvas" width="800" height="600" class="d-none"></canvas>
-                    </div>
-
-
-
-                </div>
-        </section>
+            <button class="btn btn-primary btn-lg" id="start-btn" onclick="initializeGame()">Start Game</button>
         </div>
     </nav>
 
@@ -88,7 +80,10 @@
                 <div class="d-grid gap-2">
                 </div>
             </div>
+        </div>
+    </div>
 </body>
+<script src="gameSave.js"></script>
 <script src="render.js"></script>
 <script src="game.js"></script>
 
