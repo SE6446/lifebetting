@@ -11,6 +11,7 @@ const fs = require("fs");
  *   "timeRemaining": int, // Time remaining in seconds
  *   "numberOfShares": int,
  *   "potentialPayout": float,
+ *   "UUID": string // Unique identifier for the game session
  * }
  * 
  */
@@ -24,7 +25,7 @@ export function backupGameData(gameState) {
     // Convert the game state to a JSON string
     const gameStateJSON = JSON.stringify(gameState);
     
-    const filePath = __dirname + '/gamedata/gameState.json';
+    const filePath = __dirname + `/gamedata/${gameState.UUID}.json`;
 
     fs.writeFileSync(filePath, gameStateJSON, 'utf8');
     
@@ -33,6 +34,12 @@ export function backupGameData(gameState) {
     return { success: true, message: "Game state saved successfully.", filePath: filePath };
 }
 
+/**
+ * Load the game from a provided state. This function takes a JSON object representing the game state, parses it, and returns the game state if successful.
+ * Most likely from a backup provided by the user.
+ * @param {JSON} receivedGameState 
+ * @returns {Object} result of the load operation, including success status, message, and the loaded game state if successful
+ */
 export function setGameState(receivedGameState) {
     try {
         const gameStateJSON =  JSON.stringify(receivedGameState);
