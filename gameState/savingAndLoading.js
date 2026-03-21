@@ -21,7 +21,7 @@ const fs = require("fs");
  * @param {JSON} gameState 
  * @returns {Object} result of the save operation, including success status and message
  */
-export function backupGameData(gameState) {
+function backupGameData(gameState) {
     // Convert the game state to a JSON string
     const gameStateJSON = JSON.stringify(gameState);
     
@@ -40,7 +40,7 @@ export function backupGameData(gameState) {
  * @param {JSON} receivedGameState 
  * @returns {Object} result of the load operation, including success status, message, and the loaded game state if successful
  */
-export function setGameState(receivedGameState) {
+function setGameState(receivedGameState) {
     try {
         const gameStateJSON =  JSON.stringify(receivedGameState);
         const gameState = JSON.parse(gameStateJSON);
@@ -51,3 +51,9 @@ export function setGameState(receivedGameState) {
         return { success: false, message: "Error loading game state.", error: error };
     }
 }
+
+
+module.exports = {
+    backupGameData,
+    setGameState
+};

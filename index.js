@@ -1,46 +1,36 @@
 const express = require('express');
-import { backupGameData, setGameData } from './gameState/savingAndLoading.js';
+const fs = require('fs');
+const path = require('path');
+const { backupGameData, setGameState } = require('./gameState/savingAndLoading');
 const app = express();
 const port = 3000;
-app.use(express.static(__dirname + '/static'));
 
-app.get('/', (req, res) => {
-    res.cookie('temp_uuid', '123e4567-e89b-12d3-a456-426614174000', { httpOnly: true }); // This is a temporary test UUID, replace with actual UUID generation logic later.
-    /**
-     * To read, put in index.html:
-     *  <script>
-     * if (localStorage.getItem('user_uuid')) {
-                console.log('UUID already exists in LocalStorage:', localStorage.getItem('user_uuid'));
-            } else {
-                console.log('No UUID found in LocalStorage. Attempting to read from cookie...');     *
-                // A quick function to get a cookie by name
-                const getCookie = (name) => {
-                    const value = `; ${document.cookie}`;
-                    const parts = value.split(`; ${name}=`);
-                    if (parts.length === 2) return parts.pop().split(';').shift();
-                }
-
-                const uuid = getCookie('temp_uuid');
-                if (uuid) {
-                    localStorage.setItem('user_uuid', uuid);
-                    console.log('UUID saved to LocalStorage!');
-                }
-            }
-        </script>
-     */
-    res.sendFile(__dirname + '/static/index.html');
+app.route('/').get( (req, res) => {
+    res.set('Cache-Control', 'no-store'); // Add this line
+    res.cookie('temp_uuid', '123e4567-e89b-12d3-a456-426614174000', {maxAge: 90000000, httpOnly: false, secure: false, sameSite: "lax", path: '/' }); // This is a temporary test UUID, replace with actual UUID generation logic later.
+    fs.readFile(path.join(__dirname, 'static', 'index.html'), 'utf8', (err, data) => {
+        if (err) {
+            console.error("Error reading index.html:", err);
+            res.status(500).send("Internal Server Error");
+            return;
+        }
+        res.send(data.toString());
+    });
     
 }).post((req, res) => {
-    const gameState = setGameData(req.body.gameState).gameState;
+    const gameState = setGameState(req.body.gameState);
     backupGameData(gameState);
-    res.status(200).json({ success: true, message: "Game state loaded successfully." });
+    res.status(200).send({ success: true, message: "Game state received and processed." });
 });
+
+
 
 app.get('/backup', (req, res) => {
     const output = backupGameData(req.body.gameState);
     res.download(output.filePath);
 });
 
+app.use(express.static(__dirname + '/static'));
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
