@@ -18,13 +18,37 @@ const opts = {
       width: 2,
     }
   ],
+  axes: [
+        {
+            // X-Axis (Timeline)
+            stroke: "#FFB300",    // Amber text for labels
+            grid: {
+                stroke: "#222222", // Subtle dark grey grid lines
+                width: 1,
+            },
+            ticks: {
+                stroke: "#333333", // Slightly brighter ticks
+            }
+        },
+        {
+            // Y-Axis (Price/Data)
+            stroke: "#FFB300",    // Amber text
+            grid: {
+                stroke: "#222222", // Grid lines
+                width: 1,
+            },
+            ticks: {
+                stroke: "#333333",
+            }
+        }
+    ],
   scales: {
     x: { time: true } // Tells uPlot to format X as dates
   }
 };
 
 // 3. Create the instance
-let u = new uPlot(opts, data, document.body);
+let u = new uPlot(opts, data, document.getElementById('lifeChart'));
 
 // 4. The update function
 function addDataPoint(value) {
