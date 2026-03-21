@@ -8,13 +8,13 @@ let data = [xData, yData];
 const opts = {
   title: "Life Betting - Real-Time Value Chart",
   id: "lifeChart",
-  width: 800,
+  width: window.innerWidth * 0.8,
   height: 400,
   series: [
     {}, // The X-series (timestamps)
     {
       label: "Value",
-      stroke: "dodgerblue",
+      stroke: "limegreen",
       width: 2,
     }
   ],
@@ -43,6 +43,10 @@ function addDataPoint(value) {
   u.setData(data);
 }
 
+window.addEventListener('resize', () => {
+  u.setSize(container.offsetWidth, 400);
+});
+
 class ValueUpdater {
   constructor(interval, initialtarget) {
     this.target = initialtarget; // Starting value, can be adjusted based on game logic
@@ -68,7 +72,7 @@ class ValueUpdater {
     while (this.isRunning) {
       // Simulate value changes with some randomness around the target
       const fluctuation = (Math.random() - 0.5) * 2; // Random value between -1 and 1
-      const newValue = this.currentValue + (this.target - this.currentValue) * this.precision + fluctuation;
+      const newValue = this.currentValue + ((this.target - this.currentValue) * this.precision) + fluctuation;
       this.currentValue = newValue;
       addDataPoint(newValue);
       await new Promise(resolve => setTimeout(resolve, this.updateInterval));

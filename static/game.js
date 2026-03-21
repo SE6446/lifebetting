@@ -17,7 +17,9 @@ console.log("1. Script file reached"); // This should show immediately
 //    });
 //};
 
+
 function initializeGame() {
+    window.valueUpdater = new ValueUpdater(150, 50);
     console.log("Initializing game...");
-    //const valueUpdater = new ValueUpdater(1000, 50);
+    window.valueUpdater.start();
 }

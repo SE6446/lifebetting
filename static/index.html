@@ -13,7 +13,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Inter:wght@400;500&display=swap"
         rel="stylesheet">
-    <script src="game.js"></script>
+    <script src="game.js">
+        //const valueUpdater = new ValueUpdater(1000, 100); // Update every second, starting at 100
+    </script>
     <script>
         if (localStorage.getItem('user_uuid')) {
             console.log('UUID already exists in LocalStorage:', localStorage.getItem('user_uuid'));
@@ -45,7 +47,7 @@
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">LifeBetting</a>
             <button class="navbar-toggler" id="start-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")">
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <section class="py-5 bg-white border-top border-bottom animate__animated animate__fadeIn animate__delay-1s">
