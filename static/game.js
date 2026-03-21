@@ -18,11 +18,12 @@ function initializeGame() {
 
     window.valueUpdater.start();
     startStopwatch();
-    loadQuestions().then(() => { console.log("Questions loaded, starting game..."); scheduleNextQuestion() }).catch(err => console.error("Error loading questions:", err));
+    loadQuestions().then(() => { console.log("Questions loaded, starting game..."); scheduleNextAction(triggerEvent) }).catch(err => console.error("Error loading questions:", err));
     }
+    scheduleNextAction(shortSqueeze, [60000, 120000]); // Schedule first short squeeze between 1-2 minutes
 }
 
-// Add the 'async' keyword here
+
 async function loadQuestions() {
     try {
         const response = await fetch('./questions.json');
@@ -30,18 +31,45 @@ async function loadQuestions() {
         questions = await response.json();
         console.log("Questions loaded successfully:", questions);
         return true;
-        console.log("Loaded via Fetch");
     } catch (err) {
         console.error("Fetch failed. Use a local server (Live Server).", err);
         return false;
     }
 }
 
+function renderScore() {
+    const scoreElement = document.getElementById('score');
+    if (scoreElement) {
+        scoreElement.innerText = `${parseInt(score)}`;
+    }
+}
 
-function scheduleNextQuestion() {
-    const randomDelay = Math.random() * (30000 - 10000) + 1000; // Random delay between 10 and 30 seconds
+let isShortSqueezeActive = false; // Track if a short squeeze is currently active
+async function shortSqueeze(){
+    console.log("Short squeeze triggered!");
+    isShortSqueezeActive = true;
+    window.valueUpdater.addVolatility(0.5); // Increase volatility during the short squeeze
+    alert("Short squeeze! People don't have faith in you! Prove them wrong! You have 30 seconds to beat the strike price!");
+    const shortStrike = window.valueUpdater.currentValue;
+    triggerEvent(); // Hit'em with the old one-two, a double whammy of questions to really mess with their head during the squeeze. The first one is a freebie, the second one is the real kicker. - Who ever the AI is.
+    triggerEvent();
+    triggerEvent(); 
+    await new Promise(resolve => setTimeout(resolve, 30000)); // Wait for 30 seconds
+    const finalValue = window.valueUpdater.currentValue;
+    const finalDifference = finalValue - shortStrike;
+    alert(`Short squeeze ended! Final value: ${finalValue.toFixed(2)}. You were ${finalDifference >= 0 ? 'above' : 'below'} the strike price of ${shortStrike.toFixed(2)}.`);
+    score += finalDifference; // To make big monies, we weaponise your vindication.
+    renderScore();
+    window.valueUpdater.addVolatility(-0.5); // Reduce but don't reset as we want a more volatile game until mistakes can be ruinous
+    isShortSqueezeActive = false; // Mark that the short squeeze is no longer active
+    scheduleNextAction(shortSqueeze, [60000, 120000]); // Schedule next short squeeze between 1-2 minutes
+}
+
+function scheduleNextAction(event, timerange = [10000, 30000]) {
+    const randomDelay = Math.random() * (timerange[1] - timerange[0]); // Random delay between the specified range
     console.log(`Scheduling next question in ${(randomDelay / 1000).toFixed(2)} seconds.`);
-    setTimeout(triggerEvent, randomDelay);
+    setTimeout(event, randomDelay);
+    
 }
 
 
@@ -71,17 +99,17 @@ async function triggerEvent() {
     const shuffledValues = indexedItems.map(item => item.value);
     const shuffledIndices = indexedItems.map(item => item.originalIndex);
 
-    console.log("Values:", shuffledValues);  // e.g., [20, 10, 30]
-    console.log("Indices:", shuffledIndices); // e.g., [1, 0, 2]
+    //console.log("Values:", shuffledValues);   
+    //console.log("Indices:", shuffledIndices); NO CHEATING!
 
-    // FIX: Using BACKTICKS (`) for the template string
+    
     const promptMessage = `${q.text}\n\n` +
         shuffledValues.map((opt, index) => `${index + 1}. ${opt}`).join('\n');
 
     const choice = prompt(promptMessage, "3");
 
-    applyScoreChange(parseInt(shuffledIndices[choice - 1]) + 1); // Map back to original index and apply score change
-    scheduleNextQuestion();
+    applyScoreChange(parseInt(shuffledIndices[choice - 1]) + 1);
+    scheduleNextAction(triggerEvent);
 }
 
 
@@ -106,17 +134,19 @@ function startStopwatch() {
 }
 function applyScoreChange(choice) {
     // Update the target value for the chart
+    const factor = isShortSqueezeActive ? 10 : 5; // More impact during short squeeze
     if (choice === 1) {
-        window.valueUpdater.updateTarget(window.valueUpdater.target + 5, 0.05);
+        window.valueUpdater.updateTarget(window.valueUpdater.target + factor, 0.05);
+        score += 1;
     } else if (choice === 2) {
         console.log("Almost correct, no score change.");
     } else if (choice === 3) {
-        window.valueUpdater.updateTarget(window.valueUpdater.target - 5, 0.05);
+        window.valueUpdater.updateTarget(window.valueUpdater.target - factor, 0.05);
+        score -= 1;
     } else {
         console.log("Invalid choice, no score change.");
     }
-    // Update the target value for the chart
-    //scheduleNextQuestion();
+    renderScore();
     return;
 
 }

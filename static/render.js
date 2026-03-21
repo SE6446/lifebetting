@@ -80,13 +80,16 @@ class ValueUpdater {
         this.currentValue = initialtarget; // This will fluctuate around the target
         this.updateInterval = interval; // Update every second
         this.isRunning = false;
-        this.precision = 0.1; // Precision for value fluctuations
+        this.precision = 0.1; // Precision for value fluctuations, acts as momentum.
     }
 
     updateTarget(newTarget, precision = 0.1) {
         console.log(`Updating target from ${this.target} to ${newTarget}`);
         this.target = newTarget;
-        this.precision = precision;
+        
+    }
+    addVolatility(newMomentum = 0.01) {
+        this.precision += newMomentum;
     }
 
     async start() {
@@ -99,7 +102,8 @@ class ValueUpdater {
         while (this.isRunning) {
             // Simulate value changes with some randomness around the target
             const fluctuation = (Math.random() - 0.5) * 2; // Random value between -1 and 1
-            const newValue = this.currentValue + ((this.target - this.currentValue) * this.precision) + fluctuation;
+            // We boost target value by momentum to make the shortsqueeze more intense, and the time after that...
+            const newValue = this.currentValue + (this.target - this.currentValue) * this.precision + fluctuation;
             this.currentValue = newValue;
             addDataPoint(newValue, this.updateInterval / 1000); // Convert ms to seconds for the chart
             await new Promise(resolve => setTimeout(resolve, this.updateInterval));
