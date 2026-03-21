@@ -1,7 +1,7 @@
 // 1. Initialize data buffers (X = time, Y = value)
 const now = Date.now() / 1000; // uPlot expects seconds, not ms
-let xData = [now]; // Start with a single timestamp (e.g., now)
-let yData = [10]; // Start with some initial values, currently set to 10 as that's approixmately how valuable you are if we disassembled your atoms.
+let xData = []; // Start with a single timestamp (e.g., now)
+let yData = []; // Start with some initial values, currently set to 10 as that's approixmately how valuable you are if we disassembled your atoms.
 let data = [xData, yData];
 
 // 2. Configure the chart
@@ -41,4 +41,41 @@ function addDataPoint(value) {
 
   // Efficiently update the chart
   u.setData(data);
+}
+
+class ValueUpdater {
+  constructor(interval, initialtarget) {
+    this.target = initialtarget; // Starting value, can be adjusted based on game logic
+    this.currentValue = initialtarget; // This will fluctuate around the target
+    this.updateInterval = interval; // Update every second
+    this.isRunning = false;
+    this.precision = 0.1; // Precision for value fluctuations
+  }
+
+  updateTarget(newTarget, precision = 0.1) {
+    console.log(`Updating target from ${this.target} to ${newTarget}`);
+    this.target = newTarget;
+    this.precision = precision;
+  }
+
+  async start() {
+    if (this.isRunning) return; // Prevent multiple intervals
+    this.isRunning = true;
+    this.run();
+    }
+
+    async run() {
+    while (this.isRunning) {
+      // Simulate value changes with some randomness around the target
+      const fluctuation = (Math.random() - 0.5) * 2; // Random value between -1 and 1
+      const newValue = this.currentValue + (this.target - this.currentValue) * this.precision + fluctuation;
+      this.currentValue = newValue;
+      addDataPoint(newValue);
+      await new Promise(resolve => setTimeout(resolve, this.updateInterval));
+    }
+    }
+    stop() {
+    this.isRunning = false;
+  }
+
 }

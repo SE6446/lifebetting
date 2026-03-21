@@ -1,50 +1,20 @@
 const startBtn = document.getElementById('start-btn');
 const canvas = document.getElementById('game-canvas');
 const ctx = document.getElementById('marketChart').getContext('2d');
+import { ValueUpdater } from './render.js';
 
-let isRunning = false;
 let gameChart; // We define this here so we can update it later
 let score = 0;
 
+const valueUpdater = new ValueUpdater(1000, 100); // Update every second, starting at 100
+
 // 1. The Trigger: Everything starts when this is clicked
 startBtn.addEventListener('click', () => {
-    isRunning = true;
+    valueUpdater.start();
     
     startBtn.classList.add('d-none');
     canvas.classList.remove('d-none');
-
-    // 2. Initialize the Chart
-    gameChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: [0], // Start with one point
-            datasets: [{
-                label: 'CURRENCY_VALUE',
-                data: [0], 
-                borderColor: '#ffcc00', // Dispatches Yellow
-                backgroundColor: 'rgba(255, 204, 0, 0.1)',
-                borderWidth: 3,
-                pointRadius: 0,
-                tension: 0.3,
-                fill: true
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: { display: false },
-                y: {
-                    grid: { color: '#222' },
-                    ticks: { color: '#ffcc00', font: { weight: 'bold' } }
-                }
-            },
-            plugins: { legend: { display: false } }
-        }
-    });
-startRealTimeGameLoop();
-startQuestionsTimer();
-    });
+});
 
 
 // Function to update the chart whenever points are earned
