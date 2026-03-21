@@ -17,9 +17,25 @@ console.log("1. Script file reached"); // This should show immediately
 //    });
 //};
 
+const sfx = new Audio('assets/wall_street_opening.mp3');
 
 function initializeGame() {
     window.valueUpdater = new ValueUpdater(150, 50);
     console.log("Initializing game...");
-    window.valueUpdater.start();
+    if (!window.valueUpdater.isRunning) {
+        sfx.play().catch(error => {
+            console.error("Error playing sound:", error);
+        });
+        window.valueUpdater.start();
+    }
+
+}
+
+function buyShares() {
+    console.log("Buy shares clicked");
+    // Implement buying shares logic here
+}
+function sellShares() {
+    console.log("Sell shares clicked");
+    // Implement selling shares logic here
 }
