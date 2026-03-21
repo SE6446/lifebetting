@@ -13,7 +13,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Inter:wght@400;500&display=swap"
         rel="stylesheet">
-    <!-- <script src="game.js"></script> -->
+
     <script>
         if (localStorage.getItem('user_uuid')) {
             console.log('UUID already exists in LocalStorage:', localStorage.getItem('user_uuid'));
@@ -34,6 +34,9 @@
             }
         }
     </script>
+    <script src="game.js"></script>
+    <script src="https://cdn.jsdelivr.net"></script>
+<canvas id="marketChart" width="400" height="200"></canvas>
 </head>
 
 <body class="bg-light">
@@ -58,7 +61,24 @@
         </section>
         </div>
     </nav>
-</body>
 
 
+    <div id  = "game-screen" class="fullPage">
+        <div class="dashboard">
+            <h2 class="mb-3">Dashboard</h2>
+            <div class = "box-graphBox">
+                <span class="label">Life Trends</span>
+                <canvas id="lifeChart"></canvas>
+            </div>
+            <div class="box-timerBox">
+                <span class="label">Clock</span>
+                <div id="timer" class="display-4">00:00</div>
+            </div>
+
+            <div class="box-InteractionBox">
+                <span class="label">Actions</span>
+                <div class="d-grid gap-2">
+                </div>
+    </div>
+    </body>
 </html>
