@@ -6,19 +6,19 @@ let data = [xData, yData];
 
 // 2. Configure the chart
 const opts = {
-  title: "Life Betting - Real-Time Value Chart",
-  id: "lifeChart",
-  width: window.innerWidth * 0.8,
-  height: 400,
-  series: [
-    {}, // The X-series (timestamps)
-    {
-      label: "Value",
-      stroke: "limegreen",
-      width: 2,
-    }
-  ],
-  axes: [
+    title: "Life Betting - Real-Time Value Chart",
+    id: "lifeChart",
+    width: window.innerWidth * 0.8,
+    height: 400,
+    series: [
+        {}, // The X-series (timestamps)
+        {
+            label: "Value",
+            stroke: "limegreen",
+            width: 2,
+        }
+    ],
+    axes: [
         {
             // X-Axis (Timeline)
             stroke: "#FFB300",    // Amber text for labels
@@ -42,68 +42,71 @@ const opts = {
             }
         }
     ],
-  scales: {
-    x: { time: true } // Tells uPlot to format X as dates
-  }
+    points: {
+        show: false,
+    },
+    scales: {
+        x: { time: true } // Tells uPlot to format X as dates
+    }
 };
 
-// 3. Create the instance
-let u = new uPlot(opts, data, document.getElementById('lifeChart'));
+// The world's most informative variable name.
+let uPlotChart = new uPlot(opts, data, document.getElementById('lifeChart'));
 
-// 4. The update function
+/**
+ * 
+ * @param {int} value  - The new value to add to the chart, representing the player's current value in the game.
+ * @param {int} interval - Effectively DeltaTime, eliminates the stutter in the chart by the freezing during interrogation
+ */
 function addDataPoint(value, interval) {
-  now += interval;
+    now += 86400 * interval; // Increment time by the specified interval (in days)
 
-  xData.push(now);
-  yData.push(value);
+    xData.push(now);
+    yData.push(value);
 
-  // Keep a window of 100 points
-  if (xData.length > 100) {
-    xData.shift();
-    yData.shift();
-  }
+    // Keep a window of 100 points
+    if (xData.length > 100) {
+        xData.shift();
+        yData.shift();
+    }
 
-  // Efficiently update the chart
-  u.setData(data);
+    // Efficiently update the chart
+    uPlotChart.setData(data);
 }
 
-window.addEventListener('resize', () => {
-  u.setSize(container.offsetWidth, 400);
-});
-
 class ValueUpdater {
-  constructor(interval, initialtarget) {
-    this.target = initialtarget; // Starting value, can be adjusted based on game logic
-    this.currentValue = initialtarget; // This will fluctuate around the target
-    this.updateInterval = interval; // Update every second
-    this.isRunning = false;
-    this.precision = 0.1; // Precision for value fluctuations
-  }
+    constructor(interval, initialtarget) {
+        this.target = initialtarget; // Starting value, can be adjusted based on game logic
+        this.currentValue = initialtarget; // This will fluctuate around the target
+        this.updateInterval = interval; // Update every second
+        this.isRunning = false;
+        this.precision = 0.1; // Precision for value fluctuations
+    }
 
-  updateTarget(newTarget, precision = 0.1) {
-    console.log(`Updating target from ${this.target} to ${newTarget}`);
-    this.target = newTarget;
-    this.precision = precision;
-  }
+    updateTarget(newTarget, precision = 0.1) {
+        console.log(`Updating target from ${this.target} to ${newTarget}`);
+        this.target = newTarget;
+        this.precision = precision;
+    }
 
-  async start() {
-    if (this.isRunning) return; // Prevent multiple intervals
-    this.isRunning = true;
-    this.run();
+    async start() {
+        if (this.isRunning) return; // Prevent multiple intervals
+        this.isRunning = true;
+        this.run();
     }
 
     async run() {
-    while (this.isRunning) {
-      // Simulate value changes with some randomness around the target
-      const fluctuation = (Math.random() - 0.5) * 2; // Random value between -1 and 1
-      const newValue = this.currentValue + ((this.target - this.currentValue) * this.precision) + fluctuation;
-      this.currentValue = newValue;
-      addDataPoint(newValue, this.updateInterval / 1000); // Convert ms to seconds for the chart
-      await new Promise(resolve => setTimeout(resolve, this.updateInterval));
-    }
+        while (this.isRunning) {
+            // Simulate value changes with some randomness around the target
+            const fluctuation = (Math.random() - 0.5) * 2; // Random value between -1 and 1
+            const newValue = this.currentValue + ((this.target - this.currentValue) * this.precision) + fluctuation;
+            this.currentValue = newValue;
+            addDataPoint(newValue, this.updateInterval / 1000); // Convert ms to seconds for the chart
+            await new Promise(resolve => setTimeout(resolve, this.updateInterval));
+        }
     }
     stop() {
-    this.isRunning = false;
-  }
+        this.isRunning = false;
+    }
 
 }
