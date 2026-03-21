@@ -1,0 +1,20 @@
+{
+  "name": "lifebetting",
+  "version": "1.0.0",
+  "description": "I bet you could make better decisions",
+  "homepage": "https://github.com/SE6446/lifebetting#readme",
+  "bugs": {
+    "url": "https://github.com/SE6446/lifebetting/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SE6446/lifebetting.git"
+  },
+  "license": "MIT",
+  "author": "Archie Macdonald",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
