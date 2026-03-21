@@ -36,7 +36,9 @@
     </script>
     <script src="game.js"></script>
     <script src="https://cdn.jsdelivr.net"></script>
-<canvas id="marketChart" width="400" height="200"></canvas>
+    <link rel="stylesheet" href="https://unpkg.com/uplot/dist/uPlot.min.css">
+    <script src="https://unpkg.com/uplot/dist/uPlot.iife.min.js"></script>
+    
 </head>
 
 <body class="bg-light">
@@ -63,12 +65,13 @@
     </nav>
 
 
-    <div id  = "game-screen" class="fullPage">
+    <div id="game-screen" class="fullPage">
+        <div id="chart" width="800" height="400"></div>
         <div class="dashboard">
             <h2 class="mb-3">Dashboard</h2>
-            <div class = "box-graphBox">
+            <div class="box-graphBox">
                 <span class="label">Life Trends</span>
-                <canvas id="lifeChart"></canvas>
+                <div id="lifeChart"></div>
             </div>
             <div class="box-timerBox">
                 <span class="label">Clock</span>
@@ -79,6 +82,8 @@
                 <span class="label">Actions</span>
                 <div class="d-grid gap-2">
                 </div>
-    </div>
-    </body>
+            </div>
+</body>
+<script src="render.js"></script>
+
 </html>
