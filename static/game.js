@@ -20,13 +20,14 @@ console.log("1. Script file reached"); // This should show immediately
 const sfx = new Audio('assets/wall_street_opening.mp3');
 
 function initializeGame() {
-    window.valueUpdater = new ValueUpdater(150, 50);
-    console.log("Initializing game...");
     if (!window.valueUpdater.isRunning) {
+        console.log("Initializing game...");
         sfx.play().catch(error => {
             console.error("Error playing sound:", error);
         });
         window.valueUpdater.start();
+    } else {
+        return;
     }
 
 }

@@ -13,10 +13,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Inter:wght@400;500&display=swap"
         rel="stylesheet">
-    <script src="game.js">
-        window.playerPoints = 100;
-    </script>
+    
     <script>
+        window.onload = function() {
+            window.playerPoints = 100;
+            window.valueUpdater = new ValueUpdater(150, 50);
+        };
         if (localStorage.getItem('user_uuid')) {
             console.log('UUID already exists in LocalStorage:', localStorage.getItem('user_uuid'));
         } else {
@@ -76,6 +78,7 @@
         </div>
     </div>
 </body>
+<script src="gameSave.js"></script>
 <script src="render.js"></script>
 <script src="game.js"></script>
 
