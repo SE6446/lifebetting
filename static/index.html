@@ -7,10 +7,12 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <script src="game.js"></script>
+    <script src="https://cdn.jsdelivr.net"></script>
+<canvas id="marketChart" width="400" height="200"></canvas>
 </head>
 <body class="bg-light">
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
@@ -33,4 +35,22 @@
     </section>
         </div>
     </nav>
+
+    <div id  = "game-screen" class="fullPage">
+        <div class="dashboard">
+            <h2 class="mb-3">Dashboard</h2>
+            <div class = "box-graphBox">
+                <span class="label">Life Trends</span>
+                <canvas id="lifeChart"></canvas>
+            </div>
+            <div class="box-timerBox">
+                <span class="label">Clock</span>
+                <div id="timer" class="display-4">00:00</div>
+            </div>
+
+            <div class="box-InteractionBox">
+                <span class="label">Actions</span>
+                <div class="d-grid gap-2">
+                </div>
+    </div>
     </body>

@@ -1,0 +1,402 @@
+{
+  "C001": {
+    "text": "THE BEAN ADDICTION: You’ve spent £400 on ‘Single-Origin’ coffee this year. Your blood is now 30% caffeine and 0% savings.",
+    "options": [
+      "Brew your own beans at home to save £3 per cup.",
+      "Switch to a cheaper supermarket blend for weekdays.",
+      "Buy an industrial espresso machine on a high-interest credit card."
+    ]
+  },
+  "C002": {
+    "text": "GHOST SUBSCRIPTION: The gym hasn't seen you since 2022, but they still take £45 monthly. You are a silent donor to a room of sweaty metal.",
+    "options": [
+      "Cancel the membership immediately via the app.",
+      "Freeze the account for £5 a month while you 'think about it'.",
+      "Buy expensive new lifting straps to 'force' yourself to go."
+    ]
+  },
+  "C003": {
+    "text": "3 AM AMAZON HAUL: You bought a 'Bluetooth-enabled Toaster' while sleep-deprived. Your bread is now smarter than you.",
+    "options": [
+      "Initiate a return and drop it off at a locker tomorrow.",
+      "Keep it as a funny conversation piece for guests.",
+      "Buy the matching 'Wi-Fi Kettle' to complete the set."
+    ]
+  },
+  "C004": {
+    "text": "THE AVOCADO INCIDENT: You spent £18 on toast. The internet says this is why you’ll never own a home.",
+    "options": [
+      "Buy a bag of avocados at the market and toast your own bread.",
+      "Only order it on special occasions or 'payday'.",
+      "Buy 'Avocado Toast' scented candles to feel the luxury at home."
+    ]
+  },
+  "C005": {
+    "text": "DELIVEROO DEPENDENCY: You ordered a single milkshake from 5 miles away. The delivery fee cost more than the dairy.",
+    "options": [
+      "Delete the delivery apps and walk to the local shop.",
+      "Only order when there is a 'Free Delivery' promo code.",
+      "Order a side of fries so the delivery fee 'feels' smaller."
+    ]
+  },
+  "C006": {
+    "text": "THE 'PIZZA PARTY' RAISE: Your boss offered a slice of pepperoni instead of a cost-of-living increase.",
+    "options": [
+      "Update your CV and start looking for a new role.",
+      "Take three extra slices home in a napkin for dinner.",
+      "Thank your boss and ask if there's any garlic dip left."
+    ]
+  },
+  "C007": {
+    "text": "SIDE HUSTLE DELUSION: You spent £200 on knitting supplies to sell scarves. You have made zero scarves.",
+    "options": [
+      "Sell the unused yarn and needles on eBay to recoup costs.",
+      "Knit one simple scarf for yourself so it's not a total loss.",
+      "Spend another £100 on 'Premium Alpaca Wool' for inspiration."
+    ]
+  },
+  "C008": {
+    "text": "THE OFFICE MICROWAVE: You accidentally blew up a salmon fillet. The social cost is higher than the cleaning fee.",
+    "options": [
+      "Deep clean the microwave and apologize to the floor.",
+      "Leave an anonymous 'Out of Order' sign on the door.",
+      "Microwave leftover cabbage the following day."
+    ]
+  },
+  "C009": {
+    "text": "LINKEDIN LUNACY: You spent 4 hours writing a 'hustle' post about waking up at 4 AM. You actually woke up at noon.",
+    "options": [
+      "Delete the post and actually do some productive work.",
+      "Edit the post to be a 'parody' of hustle culture.",
+      "Schedule a follow-up post about the 'Importance of Rest'."
+    ]
+  },
+  "C010": {
+    "text": "THE 'MEETING' THAT COULD HAVE BEEN AN EMAIL: You spent £10 on a 'working lunch' that achieved nothing.",
+    "options": [
+      "Politely decline the next lunch and ask for an agenda.",
+      "Make sure you expense the receipt to the company.",
+      "Suggest a 3-course dinner to 'really get into the details'."
+    ]
+  },
+  "C011": {
+    "text": "CRYPTO BRO ADVICE: A man with a laser-eye profile picture told you to buy 'Dog-Elon-Mars-Coin'.",
+    "options": [
+      "Block the account and stick to a diversified index fund.",
+      "Put £10 in just to see what happens to the chart.",
+      "Sell your emergency fund to 'Buy the Dip'."
+    ]
+  },
+  "C012": {
+    "text": "THE SMARTPHONE SMASH: You dropped your phone. The screen looks like a spiderweb. A repair is £200.",
+    "options": [
+      "Pay for the professional repair to keep the phone for 2 more years.",
+      "Apply a cheap screen protector to stop the glass from cutting you.",
+      "Trade it in for £5 and get the latest model on a 3-year contract."
+    ]
+  },
+  "C013": {
+    "text": "NFT REGRET: You own a digital picture of a sad monkey. It is currently worth £0.04.",
+    "options": [
+      "Accept the loss and use the image as a desktop wallpaper.",
+      "List it for £0.05 and hope for a 'market recovery'.",
+      "Buy five more 'Sad Monkeys' to lower your average entry price."
+    ]
+  },
+  "C014": {
+    "text": "BATTERY ANXIETY: Your laptop only works when plugged in. You are a 'Wall-Hugger'.",
+    "options": [
+      "Order a replacement battery and install it yourself.",
+      "Only use the laptop at your desk at home.",
+      "Buy a 50,000mAh power bank that weighs 2kg."
+    ]
+  },
+  "C015": {
+    "text": "THE CLOUD TRAP: You pay for 2TB of storage. 90% of it is blurry photos of your dinner from 2016.",
+    "options": [
+      "Spend an hour deleting duplicates and downgrade your plan.",
+      "Download the archives to an old physical hard drive.",
+      "Upgrade to the 5TB plan because you're at 99% capacity."
+    ]
+  },
+  "C016": {
+    "text": "DESTINATION WEDDING: Your friend is getting married in a volcano. Flights are £1,200.",
+    "options": [
+      "Send a nice card and a thoughtful gift instead of going.",
+      "Go, but stay in a hostel nearby to save on hotel costs.",
+      "Put the flights and a designer tuxedo on your credit card."
+    ]
+  },
+  "C017": {
+    "text": "THE BILL SPLIT: You had a salad; they had 4 lobsters. They want to 'split it even'.",
+    "options": [
+      "Firmly say you'll only pay for your own items and tip.",
+      "Split the bill but 'forget' to contribute to the tip.",
+      "Pay the full split and vent about it on Reddit later."
+    ]
+  },
+  "C018": {
+    "text": "BIRTHDAY PRESSURE: It's a 'Secret Santa' with a £50 limit. You are broke.",
+    "options": [
+      "Suggest a more reasonable £10 limit to the group.",
+      "Re-gift a high-quality item you never opened.",
+      "Take out a small payday loan to 'look successful'."
+    ]
+  },
+  "C019": {
+    "text": "THE ROUND: It's your turn at the bar. There are 12 people. Your card is sweating.",
+    "options": [
+      "Quietly head home before it's officially your turn.",
+      "Suggest everyone buys their own drinks from now on.",
+      "Order 12 double whiskeys and hope the card doesn't decline."
+    ]
+  },
+  "C020": {
+    "text": "DATING ON A BUDGET: You suggested 'A walk in the rain' as a first date. They think you're cheap.",
+    "options": [
+      "Suggest a free museum or a gallery visit instead.",
+      "Buy two coffees and share your umbrella.",
+      "Book a Michelin-star table to prove you're 'not a loser'."
+    ]
+  },
+  "C021": {
+    "text": "THE SCRATCH CARD FANTASY: You won £2. You are now 'statistically likely' to win the jackpot.",
+    "options": [
+      "Take the £2 cash and walk out of the shop.",
+      "Exchange the £2 for one more 'lucky' card.",
+      "Spend your grocery money on a full roll of scratchies."
+    ]
+  },
+  "C022": {
+    "text": "LIFESTYLE CREEP: You got a £50 bonus and immediately bought a cashmere scarf for £120.",
+    "options": [
+      "Return the scarf and put the £120 in your savings.",
+      "Keep the scarf but skip your next three 'treat' coffees.",
+      "Buy the matching cashmere gloves to 'complete the look'."
+    ]
+  },
+  "C023": {
+    "text": "THE 'GIRL MATH' ERROR: You bought something for £100 that was £200. You think you 'made' £100.",
+    "options": [
+      "Check your bank balance and acknowledge you spent £100.",
+      "Return the item for a full refund of your £100.",
+      "Buy a second one because you're 'saving' another £100."
+    ]
+  },
+  "C024": {
+    "text": "CLUTTER CAPITALISM: Your house is full of 'As Seen On TV' vegetable choppers.",
+    "options": [
+      "Donate the unused gadgets to a local charity shop.",
+      "Use one to actually chop a vegetable this week.",
+      "Order the 'Self-Cleaning' version of the same chopper."
+    ]
+  },
+  "C025": {
+    "text": "THE PENSION BLACK HOLE: You think your retirement plan is 'finding a bag of money'.",
+    "options": [
+      "Set up a small monthly direct debit into a real pension.",
+      "Start a 'Change Jar' for your retirement fund.",
+      "Buy more lottery tickets to increase your 'finding money' odds."
+    ]
+  },
+  "C026": {
+    "text": "AIR FRYER FEVER: You haven't used your oven in 6 months. You are now a cult member.",
+    "options": [
+      "Cook a vegetable in it occasionally to stay healthy.",
+      "Join an online forum to discuss 'Air Fryer Secrets'.",
+      "Attempt to air-fry a whole roast turkey on Christmas Day."
+    ]
+  },
+  "C027": {
+    "text": "THE IKEA Labyrinth: You went for a lightbulb; you left with a sofa and 500 tea lights.",
+    "options": [
+      "Stick to the 'Express Exit' and only buy the lightbulb.",
+      "Return the sofa but keep the tea lights.",
+      "Buy the matching coffee table from the catalog on the way out."
+    ]
+  },
+  "C028": {
+    "text": "THE HEATING COLD WAR: It’s 12°C. You are wearing three jumpers to save 40p.",
+    "options": [
+      "Turn the heating on to 18°C for one hour to dry the air.",
+      "Use a hot water bottle to stay warm in one room.",
+      "Set fire to your 'Side Hustle' wool supplies for warmth."
+    ]
+  },
+  "C029": {
+    "text": "GROCERY ROULETTE: You bought 'Reduced to Clear' sushi. It expires in 4 minutes.",
+    "options": [
+      "Eat it immediately while standing in the kitchen.",
+      "Smell it very carefully before taking a tiny bite.",
+      "Save it for your work lunch tomorrow morning."
+    ]
+  },
+  "C030": {
+    "text": "THE LAUNDRY CRISIS: You have no clean socks. You are considering buying new ones instead of washing.",
+    "options": [
+      "Put a load of laundry on and wait for them to dry.",
+      "Turn your current socks inside out for one more day.",
+      "Buy a 12-pack of 'Designer' socks on your lunch break."
+    ]
+  },
+  "C031": {
+    "text": "THE 'DOORSTEP' SCAM: A man offered to fix your roof for £50. He is currently on your roof with a hammer.",
+    "options": [
+      "Tell him to stop and call a licensed professional.",
+      "Ask him to show you a photo of the 'damage' first.",
+      "Give him another £50 to 'finish the job quickly'."
+    ]
+  },
+  "C032": {
+    "text": "VINTAGE CLOTHING: You spent £60 on a 'vintage' shirt that smells like a wet basement.",
+    "options": [
+      "Wash it with white vinegar and baking soda.",
+      "Wear it as a 'statement piece' and hope nobody smells you.",
+      "List it on Depop as 'Distressed Aesthetic' for £80."
+    ]
+  },
+  "C033": {
+    "text": "THE PARKING FINE: You 'just popped in' for 2 minutes. The yellow line didn't care.",
+    "options": [
+      "Pay the fine within 14 days to get the 50% discount.",
+      "Try to appeal it with a blurry photo of a broken meter.",
+      "Throw the letter away and wait for the bailiffs to call."
+    ]
+  },
+  "C034": {
+    "text": "TREAT CULTURE: You 'treated yourself' every day this week. You are now broke but happy-ish.",
+    "options": [
+      "Declare next week a 'No Spend' week to recover.",
+      "Only buy one small treat on Friday as a reward.",
+      "Treat yourself to a takeaway because you're 'stressed' about money."
+    ]
+  },
+  "C035": {
+    "text": "THE 'Gamer' SETUP: You spent £3,000 on a PC to play games from 1998.",
+    "options": [
+      "Use the PC for a productive side project or learning code.",
+      "Limit your gaming time to two hours an evening.",
+      "Buy a £200 'Gaming Chair' to improve your 1998 performance."
+    ]
+  },
+  "C036": {
+    "text": "THE DIY DISASTER: You tried to fix a leak. You have now flooded the kitchen.",
+    "options": [
+      "Turn off the main water valve and call an emergency plumber.",
+      "Try to soak up the water with every towel you own.",
+      "Watch a 20-minute YouTube tutorial while the water rises."
+    ]
+  },
+  "C037": {
+    "text": "STREAMING OVERLOAD: You pay for Disney+, Netflix, Hulu, and 'Niche-Fish-Videos'.",
+    "options": [
+      "Cancel all but one and rotate them every month.",
+      "Share accounts with family members to split costs.",
+      "Upgrade to 'Ultra HD Premium' on all four accounts."
+    ]
+  },
+  "C038": {
+    "text": "THE 'FREE' TRIAL: You forgot to cancel. You now own a year of 'Extreme Pogo-Sticking'.",
+    "options": [
+      "Email support immediately and ask for a refund.",
+      "Watch at least one video so the money isn't 'wasted'.",
+      "Sign up for the 'Extreme Unicycling' trial to compare."
+    ]
+  },
+  "C039": {
+    "text": "THE OFFICE 'BAKE OFF': You bought a supermarket cake and put it on a plate.",
+    "options": [
+      "Own up to it and say you didn't have time to bake.",
+      "Dust it with icing sugar to make it look 'homemade'.",
+      "Claim it's an 'Artisanal Deconstructed Sponge' from a bakery."
+    ]
+  },
+  "C040": {
+    "text": "THE LOAN TO DAVE: Dave still hasn't paid you the £20 from 2019. He just bought a boat.",
+    "options": [
+      "Politely remind Dave about the money and your bank details.",
+      "Ask Dave to buy the next three rounds of drinks.",
+      "Ask Dave if you can live on the boat for free."
+    ]
+  },
+  "C041": {
+    "text": "THE PRINTER SCAM: Ink costs more than human blood. Your printer is 'updating'.",
+    "options": [
+      "Use the printer at your local library for 10p a sheet.",
+      "Buy compatible third-party ink cartridges online.",
+      "Buy a whole new printer because it comes with 'free' ink."
+    ]
+  },
+  "C042": {
+    "text": "THE WELLNESS RETREAT: You spent £1,000 to scream in a forest for a weekend.",
+    "options": [
+      "Go for a free hike in the woods next time you're stressed.",
+      "Try 'Forest Bathing' in your local park for an hour.",
+      "Book the 'Luxury Silent Retreat' for £2,500 next month."
+    ]
+  },
+  "C043": {
+    "text": "THE 'INVESTMENT' WATCH: It's a gold-plated Casio. It is not an investment.",
+    "options": [
+      "Wear it and enjoy it as a functional timepiece.",
+      "Keep it in the original box to prevent scratches.",
+      "Try to trade it for a real Rolex on a crypto forum."
+    ]
+  },
+  "C044": {
+    "text": "THE NEW HOBBY: You bought a unicycle. You have fallen off it 40 times.",
+    "options": [
+      "Sell it on Facebook Marketplace while it's still in one piece.",
+      "Practice on grass with a helmet and knee pads.",
+      "Buy a 'Professional' unicycle to see if that's the problem."
+    ]
+  },
+  "C045": {
+    "text": "THE 'SMART' HOME: Your lights only turn on if you clap three times and shout 'BEANS'.",
+    "options": [
+      "Uninstall the 'smart' bulbs and go back to manual switches.",
+      "Program a shortcut on your phone so you don't have to shout.",
+      "Add a voice-activated 'Smart Toaster' to the network."
+    ]
+  },
+  "C046": {
+    "text": "THE 'VINTAGE' CAR: It's a 2005 Corolla with a missing door handle.",
+    "options": [
+      "Take it to a local garage for a full safety check.",
+      "Glue the handle back on and hope for the best.",
+      "List it as a 'Classic Collector's Item' for £5,000."
+    ]
+  },
+  "C047": {
+    "text": "THE BRUNCH BETRAYAL: You were too hungover to go, but they charged you anyway.",
+    "options": [
+      "Check the terms and conditions and ask for a credit note.",
+      "Offer to pay half the fee since you didn't eat.",
+      "Go anyway and fall asleep in your eggs benedict."
+    ]
+  },
+  "C048": {
+    "text": "THE LUXURY CANDLE: It smells like 'Wealth' but costs £60 and burns for 2 hours.",
+    "options": [
+      "Buy a 10-pack of basic candles from the supermarket.",
+      "Only light the expensive candle when you have a date over.",
+      "Keep it burning all night to 'manifest' more money."
+    ]
+  },
+  "C049": {
+    "text": "THE REFILL SHOP: You spent £40 on 'Ethical Flour'. It’s just flour.",
+    "options": [
+      "Buy the supermarket 'Value' flour and reuse your old glass jar.",
+      "Use the flour to bake a cake for a charity event.",
+      "Buy the 'Artisanal Himalayan Salt' for £15 a tin."
+    ]
+  },
+  "C050": {
+    "text": "THE FINAL AUDIT: You are down to your last £10. Payday is in 6 days.",
+    "options": [
+      "Buy a large bag of rice and some frozen peas.",
+      "Ask a friend if you can come over for dinner tonight.",
+      "Spend the £10 on a 'Mega-Millions' lottery ticket."
+    ]
+  }
+}
