@@ -63,6 +63,7 @@ function addDataPoint(value, interval) {
 
     xData.push(now);
     yData.push(value);
+    
 
     // Keep a window of 100 points
     if (xData.length > 100) {
@@ -74,10 +75,19 @@ function addDataPoint(value, interval) {
     uPlotChart.setData(data);
 }
 
-class ValueUpdater {
+function clearChart(){
+    xData = [];
+    yData = [];
+    data = [xData, yData]
+    uPlotChart.setData(data)
+}
+
+class ValueUpdater extends EventTarget {
     constructor(interval, initialtarget) {
+        super()
         this.target = initialtarget; // Starting value, can be adjusted based on game logic
         this.currentValue = initialtarget; // This will fluctuate around the target
+        this.baseTarget = initialtarget;
         this.updateInterval = interval; // Update every second
         this.isRunning = false;
         this.precision = 0.1; // Precision for value fluctuations, acts as momentum.
@@ -106,11 +116,23 @@ class ValueUpdater {
             const newValue = this.currentValue + (this.target - this.currentValue) * this.precision + fluctuation;
             this.currentValue = newValue;
             addDataPoint(newValue, this.updateInterval / 1000); // Convert ms to seconds for the chart
+            if (this.currentValue <= 0){this.end()}
             await new Promise(resolve => setTimeout(resolve, this.updateInterval));
         }
     }
     stop() {
         this.isRunning = false;
+    }
+    end() {
+        this.stop();
+        clearChart();
+        this.precision = 0.1;
+        this.target = this.baseTarget;
+        this.currentValue = this.baseTarget;
+        const stopEvent = new CustomEvent('appStopped', { 
+        detail: { finalValue: this._currentValue } 
+        });
+        this.dispatchEvent(stopEvent);
     }
 
 }

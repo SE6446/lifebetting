@@ -2,15 +2,19 @@ console.log("1. Script file reached"); // This should show immediately
 
 let questions = {};
 let score = 0;
-let startTime;
 let elapsedTime = 0;
 let stopWatchInterval;
 const sfx = new Audio('assets/wall_street_opening.mp3');
+loadQuestions().then(() => { console.log("Questions loaded");});
 
-function initializeGame() {
-    let currentScore = 10;
+function toggleGame() {
     window.valueUpdater = new ValueUpdater(150, 50);
-    console.log("Initializing game...");
+    console.log("Toggling game...");
+    window.valueUpdater.addEventListener("appStopped", (event) => {
+        stopStopwatch();
+        alert(`Game over! Achieved a score of ${score}`);
+        resetStopwatch();
+    });
     if (!window.valueUpdater.isRunning) {
     sfx.play().catch(error => {
         console.error("Error playing sound:", error);
@@ -18,9 +22,13 @@ function initializeGame() {
 
     window.valueUpdater.start();
     startStopwatch();
-    loadQuestions().then(() => { console.log("Questions loaded, starting game..."); scheduleNextAction(triggerEvent) }).catch(err => console.error("Error loading questions:", err));
-    }
+    scheduleNextAction(triggerEvent)
     scheduleNextAction(shortSqueeze, [60000, 120000]); // Schedule first short squeeze between 1-2 minutes
+    } else {
+        stopStopwatch();
+        window.valueUpdater.stop() // Stop the value updater loop
+        console.log("Game stopped.");
+    }
 }
 
 
@@ -45,15 +53,22 @@ function renderScore() {
 }
 
 let isShortSqueezeActive = false; // Track if a short squeeze is currently active
+
+/**
+ * Short Squeeze is an event where the opps short your life! Don't let it happen!
+ * @returns void
+ */
 async function shortSqueeze(){
+    if (!window.valueUpdater.isRunning) return;
+
     console.log("Short squeeze triggered!");
     isShortSqueezeActive = true;
     window.valueUpdater.addVolatility(0.5); // Increase volatility during the short squeeze
     alert("Short squeeze! People don't have faith in you! Prove them wrong! You have 30 seconds to beat the strike price!");
     const shortStrike = window.valueUpdater.currentValue;
-    triggerEvent(); // Hit'em with the old one-two, a double whammy of questions to really mess with their head during the squeeze. The first one is a freebie, the second one is the real kicker. - Who ever the AI is.
-    triggerEvent();
-    triggerEvent(); 
+    //triggerEvent(); // Hit'em with the old one-two, a double whammy of questions to really mess with their head during the squeeze. The first one is a freebie, the second one is the real kicker. - Who ever the AI is.
+    //triggerEvent();
+    //triggerEvent(); 
     await new Promise(resolve => setTimeout(resolve, 30000)); // Wait for 30 seconds
     const finalValue = window.valueUpdater.currentValue;
     const finalDifference = finalValue - shortStrike;
@@ -74,6 +89,7 @@ function scheduleNextAction(event, timerange = [10000, 30000]) {
 
 
 async function triggerEvent() {
+    if (!window.valueUpdater.isRunning) return;
     const keys = Object.keys(questions);
 
     // Safety check: if no questions exist, stop here
@@ -154,13 +170,22 @@ function applyScoreChange(choice) {
 
 
 
-function startStopwatch() {
-    if (stopWatchInterval) clearInterval(stopWatchInterval);
+// 1. Declare variables in the outer scope
+let stopwatchInterval = null;
+let startTime = null;
 
-    //Set the start time
+/**
+ * Starts the stopwatch. 
+ * If it's already running, it restarts it.
+ */
+function startStopwatch() {
+    // Clear any existing interval to prevent "leaking" memory or multiple loops
+    if (stopwatchInterval) {
+        clearInterval(stopwatchInterval);
+    }
+
     startTime = Date.now();
 
-    //Start the loop
     stopwatchInterval = setInterval(() => {
         const now = Date.now();
         const diff = now - startTime;
@@ -173,18 +198,28 @@ function startStopwatch() {
         const timerElement = document.getElementById('timer');
         if (timerElement) {
             timerElement.innerText = `${mins}:${secs}`;
-            timerElement.classList.add('text-white'); // Apply Bloomberg white
+            //timerElement.classList.add('text-white');
         }
     }, 1000);
 }
 
-function updateStopwatch(ms) {
-    const totalSeconds = Math.floor(ms / 1000);
-    const minutes = Math.floor(totalSeconds / 60).toString.padStart(2, '0');
+/**
+ * Stops the stopwatch and clears the interval.
+ */
+function stopStopwatch() {
+    if (stopwatchInterval) {
+        clearInterval(stopwatchInterval);
+        stopwatchInterval = null; // Reset variable for cleanliness
+        console.log("Stopwatch stopped.");
+    }
+}
 
-    const seconds = document.getElementById('stopwatch');
-    if (timerDisplay) {
-        timerDisplay.innerText = `Time: ${minutes}:${seconds}`;
+function resetStopwatch() {
+    stopStopwatch();
+    const timerElement = document.getElementById('timer');
+    if (timerElement) {
+        timerElement.innerText = "00:00";
+        //timerElement.classList.remove('text-white');
     }
 }
 

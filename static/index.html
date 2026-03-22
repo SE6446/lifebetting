@@ -15,7 +15,6 @@
         rel="stylesheet">    
     <script>
         window.onload = function() {
-            window.playerPoints = 100;
             window.valueUpdater = new ValueUpdater(150, 50);
         };
         if (localStorage.getItem('user_uuid')) {
@@ -51,7 +50,7 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <button class="btn btn-primary btn-lg" id="start-btn" onclick="initializeGame()">Start Game</button>
+            <button class="btn btn-primary btn-lg" id="start-btn" onclick="toggleGame()">Start Game</button>
         </div>
     </nav>
 
