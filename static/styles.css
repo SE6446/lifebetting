@@ -1,0 +1,123 @@
+/* Bloomberg Terminal Theme */
+
+:root {
+    --bg-color: #000000;
+    --text-amber: #FFB300;     /* Classic Command Line Amber */
+    --text-white: #FFFFFF;     /* Input fields and primary data */
+    --text-cyan: #00FFFF;      /* Links and clickable functions */
+    --price-up: #00FF00;       /* Positive movement */
+    --price-down: #FF0000;     /* Negative movement */
+    --border-grey: #333333;    /* Subtle dividers */
+    --btn-hover: #444444;
+    /* The "Navy" Bloomberg Base */
+    --bg-gradient: radial-gradient(circle at center, #001226 0%, #000000 100%);
+    --bg-solid: #000814; 
+    
+    --grid-line: rgba(255, 255, 255, 0.05); /* Muted for the chart axes */
+    --panel-bg: rgba(0, 0, 0, 0.6);
+    --bs-body-color: var(--text-amber); /* This changes the default for the WHOLE site */
+}
+
+body {
+    background: var(--bg-solid); /* Fallback */
+    background: var(--bg-gradient) fixed; /* The "Modern" navy depth */
+    color: var(--text-amber) !important;
+    font-family: 'Roboto Mono', monospace; /* Modern alternative to Bloomberg Fixed */
+    min-height: 100vh;
+}
+
+.data-panel {
+    background: var(--panel-bg);
+    border: 1px solid #1a2a3a; /* Dark navy border */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+dialog {
+    background-color: var(--bg-solid);
+}
+
+.dialog p {
+    color: var(--text-amber) !important;
+}
+
+div.box-graphBox {
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center;     /* Vertical centering */
+    width: 100%;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #111111;
+    border-bottom: 2px solid var(--border-grey);
+    padding: 10px 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+nav a {
+    color: var(--text-white);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Containers and Divs */
+.container {
+    padding: 20px;
+}
+
+.data-panel {
+    border: 1px solid var(--border-grey);
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* Typography & Data Classes */
+h1, h2 {
+    color: var(--text-white);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.up { color: var(--price-up); }
+.down { color: var(--price-down); }
+
+/* Buttons Styled like Terminal Function Keys */
+button {
+    background-color: #222222;
+    color: var(--text-white);
+    border: 1px solid var(--text-white);
+    padding: 5px 15px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background-color: var(--btn-hover);
+}
+
+button.execute {
+    background-color: #004400; /* Subtle green for "GO" keys */
+    border-color: var(--price-up);
+}
+
+/* Input Fields */
+input[type="text"] {
+    background-color: var(--bg-color);
+    border: 1px solid var(--text-amber);
+    color: var(--text-white);
+    padding: 5px;
+    outline: none;
+}
+
+input[type="text"]:focus {
+    border-color: var(--text-cyan);
+}
