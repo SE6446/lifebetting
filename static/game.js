@@ -200,7 +200,6 @@ function startStopwatch() {
  */
 function stopStopwatch() {
     if (stopwatchInterval) {
-        clearInterval(stopwatchInterval);
         stopwatchInterval = null; // Reset variable for cleanliness
         console.log("Stopwatch stopped.");
     }
@@ -211,6 +210,7 @@ function stopStopwatch() {
  */
 function resetStopwatch() {
     stopStopwatch();
+    clearInterval(stopWatchInterval)
     const timerElement = document.getElementById('timer');
     if (timerElement) {
         timerElement.innerText = "00:00";
