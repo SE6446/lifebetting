@@ -39,7 +39,7 @@ You should only need to install express.js.
 npm run run
 ```
 
-### Docker
+### Docker *Currently broken
 If all checks have passed in main we push to GCHR. Then to run it is as simple as:
 ```
 docker pull ghcr.io/se6446/lifebetting:latest
