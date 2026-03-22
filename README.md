@@ -40,11 +40,11 @@ npm run run
 ```
 
 ### Docker
-#### GHCR *Currently broken
+#### GHCR
 If all checks have passed in main we push to GCHR. Then to run it is as simple as:
 ```
-docker pull ghcr.io/se6446/lifebetting:latest
-docker run --name lifebetting ghcr.io/se6446/lifebetting:latest
+docker pull ghcr.io/se6446/lifebetting:main
+docker run --name lifebetting ghcr.io/se6446/lifebetting:main
 ```
 #### Docker-compose
 ```
