@@ -51,7 +51,14 @@ const opts = {
 };
 
 // The world's most informative variable name.
-let uPlotChart = new uPlot(opts, data, document.getElementById('lifeChart'));
+const container  = document.getElementById('lifeChartDiv')
+let uPlotChart = new uPlot(opts, data, document.getElementById('lifeChartDiv'));
+window.addEventListener("resize", e => {
+    u.setSize({
+        width: container.offsetWidth,
+        height: container.offsetHeight
+    });
+});
 
 /**
  * 

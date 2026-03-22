@@ -6,9 +6,12 @@ let elapsedTime = 0;
 let stopWatchInterval;
 const sfx = new Audio('assets/wall_street_opening.mp3');
 loadQuestions().then(() => { console.log("Questions loaded");});
+const startBtn = document.getElementById("start-btn");
 
 function toggleGame() {
-    window.valueUpdater = new ValueUpdater(150, 50);
+    if (!window.valueUpdater){
+        window.valueUpdater = new ValueUpdater(150, 50);
+    }
     console.log("Toggling game...");
     window.valueUpdater.addEventListener("appStopped", (event) => {
         stopStopwatch();
@@ -16,18 +19,20 @@ function toggleGame() {
         resetStopwatch();
     });
     if (!window.valueUpdater.isRunning) {
-    sfx.play().catch(error => {
-        console.error("Error playing sound:", error);
-    });
+        sfx.play().catch(error => {
+            console.error("Error playing sound:", error);
+        });
 
-    window.valueUpdater.start();
-    startStopwatch();
-    scheduleNextAction(triggerEvent)
-    scheduleNextAction(shortSqueeze, [120000, 180000]); // Schedule first short squeeze between 2-3 minutes
+        window.valueUpdater.start();
+        startBtn.textContent = "Pause Game"
+        startStopwatch();
+        scheduleNextAction(triggerEvent)
+        scheduleNextAction(shortSqueeze, [120000, 180000]); // Schedule first short squeeze between 2-3 minutes
     } else {
         stopStopwatch();
         window.valueUpdater.stop() // Stop the value updater loop
         console.log("Game stopped.");
+        startBtn.textContent = "Start Game"
     }
 }
 
@@ -78,7 +83,7 @@ async function shortSqueeze(){
     alert(`Short squeeze ended! Final value: ${finalValue.toFixed(2)}. You were ${finalDifference >= 0 ? 'above' : 'below'} the strike price of ${shortStrike.toFixed(2)}.`);
     score += finalDifference; // To make big monies, we weaponise your vindication.
     renderScore();
-    window.valueUpdater.addVolatility(-0.5); // Reduce but don't reset as we want a more volatile game until mistakes can be ruinous
+    window.valueUpdater.addVolatility(-0.45); // Reduce but don't reset as we want a more volatile game until mistakes can be ruinous
     isShortSqueezeActive = false; // Mark that the short squeeze is no longer active
     scheduleNextAction(shortSqueeze, [60000, 120000]); // Schedule next short squeeze between 1-2 minutes
 }
@@ -135,25 +140,7 @@ async function triggerEvent() {
 }
 
 
-function startStopwatch() {
-    if (stopWatchInterval) clearInterval(stopWatchInterval);
-    startTime = Date.now();
-    
 
-    stopWatchInterval = setInterval(() => {
-        const now = Date.now();
-        const diff = now - startTime;
-        const totalSeconds = Math.floor(diff / 1000);
-
-        const mins = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
-        const secs = (totalSeconds % 60).toString().padStart(2, '0');
-
-        const timerElement = document.getElementById('timer');
-        if (timerElement) {
-            timerElement.innerText = `${mins}:${secs}`;
-        }
-    }, 1000);
-}
 function applyScoreChange(choice) {
     // Update the target value for the chart
     const factor = isShortSqueezeActive ? 10 : 5; // More impact during short squeeze
@@ -185,9 +172,9 @@ let startTime = null;
  */
 function startStopwatch() {
     // Clear any existing interval to prevent "leaking" memory or multiple loops
-    if (stopwatchInterval) {
-        clearInterval(stopwatchInterval);
-    }
+    //if (stopwatchInterval) {
+    //    clearInterval(stopwatchInterval);
+    //}
 
     startTime = Date.now();
 
@@ -262,10 +249,4 @@ async function asyncPrompt(message) {
             }
         };
     });
-}
-
-// Usage (This won't freeze your UI!)
-async function runTask() {
-  const name = await customPrompt("Enter your name");
-  console.log("User entered:", name);
 }

@@ -40,6 +40,13 @@ dialog {
     color: var(--text-amber) !important;
 }
 
+div.box-graphBox {
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center;     /* Vertical centering */
+    width: 100%;
+}
+
 /* Navigation Bar */
 nav {
     background-color: #111111;
