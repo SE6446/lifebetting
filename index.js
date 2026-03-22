@@ -31,6 +31,6 @@ app.get('/backup', (req, res) => {
 });
 
 app.use(express.static(__dirname + '/static'));
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
