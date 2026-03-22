@@ -13,17 +13,15 @@
     --bg-gradient: radial-gradient(circle at center, #001226 0%, #000000 100%);
     --bg-solid: #000814; 
     
-    /* Terminal UI Accents */
-    --text-amber: #ffb300; 
-    --text-cyan: #00d4ff; 
     --grid-line: rgba(255, 255, 255, 0.05); /* Muted for the chart axes */
     --panel-bg: rgba(0, 0, 0, 0.6);
+    --bs-body-color: var(--text-amber); /* This changes the default for the WHOLE site */
 }
 
 body {
     background: var(--bg-solid); /* Fallback */
     background: var(--bg-gradient) fixed; /* The "Modern" navy depth */
-    color: var(--text-amber);
+    color: var(--text-amber) !important;
     font-family: 'Roboto Mono', monospace; /* Modern alternative to Bloomberg Fixed */
     min-height: 100vh;
 }
@@ -32,6 +30,14 @@ body {
     background: var(--panel-bg);
     border: 1px solid #1a2a3a; /* Dark navy border */
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+dialog {
+    background-color: var(--bg-solid);
+}
+
+.dialog p {
+    color: var(--text-amber) !important;
 }
 
 /* Navigation Bar */
@@ -45,7 +51,7 @@ nav {
 }
 
 nav a {
-    color: var(--text-cyan);
+    color: var(--text-white);
     text-decoration: none;
     font-weight: bold;
     font-size: 0.9rem;

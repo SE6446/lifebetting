@@ -23,7 +23,7 @@ function toggleGame() {
     window.valueUpdater.start();
     startStopwatch();
     scheduleNextAction(triggerEvent)
-    scheduleNextAction(shortSqueeze, [60000, 120000]); // Schedule first short squeeze between 1-2 minutes
+    scheduleNextAction(shortSqueeze, [120000, 180000]); // Schedule first short squeeze between 2-3 minutes
     } else {
         stopStopwatch();
         window.valueUpdater.stop() // Stop the value updater loop
@@ -45,6 +45,9 @@ async function loadQuestions() {
     }
 }
 
+/**
+ * Prompts us to update the score clientside
+ */
 function renderScore() {
     const scoreElement = document.getElementById('score');
     if (scoreElement) {
@@ -87,7 +90,10 @@ function scheduleNextAction(event, timerange = [10000, 30000]) {
     
 }
 
-
+/**
+ * A function to prompt the user for a question.
+ * @returns void
+ */
 async function triggerEvent() {
     if (!window.valueUpdater.isRunning) return;
     const keys = Object.keys(questions);
@@ -122,7 +128,7 @@ async function triggerEvent() {
     const promptMessage = `${q.text}\n\n` +
         shuffledValues.map((opt, index) => `${index + 1}. ${opt}`).join('\n');
 
-    const choice = prompt(promptMessage, "3");
+    const choice = await asyncPrompt(promptMessage, "3");
 
     applyScoreChange(parseInt(shuffledIndices[choice - 1]) + 1);
     scheduleNextAction(triggerEvent);
@@ -170,7 +176,6 @@ function applyScoreChange(choice) {
 
 
 
-// 1. Declare variables in the outer scope
 let stopwatchInterval = null;
 let startTime = null;
 
@@ -214,6 +219,9 @@ function stopStopwatch() {
     }
 }
 
+/**
+ * reset's the Stopwatch, in theory startStopwatch does this but this forces the webpage to reset to zero before starting a new stopwatch
+ */
 function resetStopwatch() {
     stopStopwatch();
     const timerElement = document.getElementById('timer');
@@ -223,13 +231,41 @@ function resetStopwatch() {
     }
 }
 
+async function asyncPrompt(message) {
+    console.debug(message)
+    const dialog = document.getElementById('BigChoices');
+    const pTag = document.getElementById("promptText");
+    const input = document.getElementById('promptInput');
 
-
-function buyShares() {
-    console.log("Buy shares clicked");
-    // Implement buying shares logic here
+    // 1. Reset the input and dialog state from any previous calls
+    input.value = '';
+    dialog.returnValue = '';
+    
+    pTag.style.color = "var(--text-amber)";
+    pTag.textContent = message;
+    // Listen for the Enter key on the input field
+    input.onkeydown = (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Stop it from clicking "Cancel"
+            dialog.close("default"); // Force the dialog to close with success
+        }
+    };
+    return new Promise((resolve) => {
+        dialog.showModal(); 
+  
+        dialog.onclose = () => {
+            // 3. Check which button closed the dialog
+            if (dialog.returnValue === "default") {
+                resolve(input.value); // User clicked Confirm
+            } else {
+                resolve(null); // User clicked Cancel or pressed Escape
+            }
+        };
+    });
 }
-function sellShares() {
-    console.log("Sell shares clicked");
-    // Implement selling shares logic here
+
+// Usage (This won't freeze your UI!)
+async function runTask() {
+  const name = await customPrompt("Enter your name");
+  console.log("User entered:", name);
 }

@@ -58,7 +58,6 @@
     <div id="game-screen" class="fullPage">
         <div id="chart" width="800" height="400"></div>
         <div class="dashboard">
-            <h2 class="mb-3">Dashboard</h2>
             <div class="box-graphBox">
                 <span class="label">Life Trends</span>
                 <div id="lifeChart"></div>
@@ -72,14 +71,16 @@
                 <span class="label">Current Score</span>
                 <div id="score" class="display-4">0</div>
             </div>
-            
-            <div class="box-InteractionBox">
-                <span class="label">Actions</span>
-                <div class="d-grid gap-2">
-                </div>
-            </div>
         </div>
     </div>
+    <dialog id="BigChoices">
+    <form method="dialog">
+        <p id="promptText">Placeholder</p>
+        <input type="text" id="promptInput">
+        <button value="cancel">Cancel</button>
+        <button value="default">Confirm</button>
+    </form>
+    </dialog>
 </body>
 <script src="render.js"></script>
 <script src="game.js"></script>
