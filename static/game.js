@@ -229,6 +229,7 @@ async function asyncPrompt(message) {
     dialog.returnValue = '';
     
     pTag.style.color = "var(--text-amber)";
+    pTag.style.whiteSpace = "pre-wrap";
     pTag.textContent = message;
     // Listen for the Enter key on the input field
     input.onkeydown = (event) => {
